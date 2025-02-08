@@ -1,16 +1,32 @@
-# This is a sample Python script.
+import os
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+import openai
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+def main() -> None:
+    client = openai.AzureOpenAI(
+        api_version="2024-06-01",
+        azure_endpoint="https://genai-nexus.int.api.corpinter.net/apikey/openai/deployments/gpt-4o/chat/completions/",
+        api_key="6559568b-bb8c-4234-af21-b666ea778a26"
+,
+    )
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    completion = client.chat.completions.create(
+        model="gpt-4o",
+        messages=[
+            {
+                "role": "user",
+                "content": """ hii !! """
+,
+            },
+        ],
+    )
+    print("Response: " + completion.choices[0].message.content)
+
+
+if __name__ == "__main__":
+    main()
+
+
+#https://huggingface.co/blog/ngxson/make-your-own-rag
+#https://ollama.com/download
