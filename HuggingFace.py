@@ -83,10 +83,11 @@ client = openai.AzureOpenAI(
 completion = client.chat.completions.create(
         model="gpt-4o",
   messages=[
-   # {'role': 'system', 'content': instruction_prompt},
+    {'role': 'system', 'content': instruction_prompt},
     {'role': 'user', 'content': input_query},
   ],
   #stream=True,
+  temperature=0.1
     )
 
 
